@@ -9,3 +9,5 @@ The tutorial covers the creation of a simple blockchain with the following featu
 3. Proof of Work (PoW): The consensus mechanism used is PoW, where miners must find a hash value that meets certain criteria (difficulty level) to add a new block to the chain.
 4. HTTP Server: The blockchain is exposed via a simple HTTP server that handles API requests.
 
+# Credits
+This project was developed by LyunSs following the tutorial by Mauricio M. Ribeiro
