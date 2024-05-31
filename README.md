@@ -9,7 +9,13 @@ The tutorial covers the creation of a simple blockchain with the following featu
 3. Proof of Work (PoW): The consensus mechanism used is PoW, where miners must find a hash value that meets certain criteria (difficulty level) to add a new block to the chain.
 4. HTTP Server: The blockchain is exposed via a simple HTTP server that handles API requests.
 
-You can run the blockchain with docker:
+You can run the code just by cloning the repo and using 
+
+```
+go run main.go 9000
+```
+
+Or you can use Docker to run the blockchain :
 
 ```
 docker build -t blockchainbetsports_image .
@@ -18,7 +24,7 @@ docker build -t blockchainbetsports_image .
 Then,
 
 ```
-docker run -p 9000:9000 blockchainbetsports_image
+docker run -p 9000:9000 --name <container_name> blockchainbetsports_image
 ```
 
 # Credits
