@@ -70,42 +70,6 @@ The tutorial covers the creation of a simple blockchain with the following featu
     }' http://localhost:9000/register-and-broadcast-node
     ```
 
-#### 5. Register multiple Nodes at once
-- **Endpoint:** `/register-nodes-bulk`
-- **Method:** `POST`
-- **Description:** Registers multiple new nodes in the network at once.
-- **Example:**
-    ```sh
-    curl -X POST -H "Content-Type: application/json" -d '{
-      "allNetworkNodes": ["http://localhost:9001", "http://localhost:9002"]
-    }' http://localhost:9000/register-nodes-bulk
-    ```
-
-#### 6. Receive a new Block
-- **Endpoint:** `/receive-new-block`
-- **Method:** `POST`
-- **Description:** Receives a newly mined block and adds it to the blockchain.
-- **Example:**
-    ```sh
-    curl -X POST -H "Content-Type: application/json" -d '{
-      "newBlock": {
-        "index": 2,
-        "timestamp": 1623423456,
-        "bets": [
-          {
-            "playername": "JohnDoe",
-            "matchid": "match123",
-            "teamonescore": 1,
-            "teamtwoscore": 2
-          }
-        ],
-        "nonce": 12345,
-        "hash": "abcd1234",
-        "previousblockhash": "xyz7890"
-      }
-    }' http://localhost:9000/receive-new-block
-    ```
-
 ### GET Endpoints
 
 #### 1. Get the entire Blockchain
