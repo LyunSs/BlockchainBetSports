@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Betting App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Blockchain Betting App</h1>
+
+    <section id="register-bet">
+        <h2>Register a Bet</h2>
+        <form id="bet-form">
+            <label for="playername">Player Name:</label>
+            <input type="text" id="playername" name="playername">
+
+            <label for="matchid">Match ID:</label>
+            <input type="text" id="matchid" name="matchid">
+
+            <label for="teamonescore">Team One Score:</label>
+            <input type="number" id="teamonescore" name="teamonescore">
+
+            <label for="teamtwoscore">Team Two Score:</label>
+            <input type="number" id="teamtwoscore" name="teamtwoscore">
+
+            <button id="submit-bet" type="submit">Register Bet</button>
+        </form>
+    </section>
+
+    <section id="blockchain">
+        <h2>Blockchain</h2>
+        <button id="get-blockchain">Get Blockchain</button>
+        <pre id="blockchain-data"></pre>
+    </section>
+
+    <section id="mine">
+        <h2>Mine a Block</h2>
+        <button id="mine-block">Mine Block</button>
+        <pre id="mine-result"></pre>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
