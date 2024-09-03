@@ -3,6 +3,7 @@ package bet
 import (
 	"crypto/sha256"
 	"encoding/base64"
+	"fmt"
 	"log"
 	"strconv"
 	"strings"
@@ -11,7 +12,7 @@ import (
 
 //RegisterBet registers a bet in our blockchain
 func (b *Blockchain) RegisterBet(bet Bet) bool {
-	log.Print(bet.TeamOneScore)
+	log.Print("Registering following bet: ", bet)
 	b.PendingBets = append(b.PendingBets, bet)
 	return true
 }
@@ -100,6 +101,7 @@ func (b *Blockchain) GetBetsForMatch(matchID string) Bets {
 		betsLength := len(betsInBlock)
 		for j < betsLength {
 			bet := betsInBlock[j]
+			fmt.Println("les bets", bet)
 			if bet.MatchID == matchID {
 				matchBets = append(matchBets, bet)
 			}

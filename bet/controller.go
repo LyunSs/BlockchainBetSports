@@ -365,6 +365,7 @@ func (c *Controller) RegisterNodesBulk(w http.ResponseWriter, r *http.Request) {
 		if node != c.currentNodeURL {
 			success := c.blockchain.RegisterNode(node) // registers the node into the blockchain
 			if !success {
+				log.Fatalln("Error Registring Node ", err)
 				w.WriteHeader(http.StatusInternalServerError)
 				return
 			}
@@ -467,23 +468,32 @@ func isValidBlockHash(hash string, difficulty int) bool {
 
 func (c *Controller) GetBetsForMatch(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r) //pour extraire les variables de la requête HTTP 'r'
-	matchID := strings.ToLower(vars["matchId"])
-
+	matchID := vars["matchId"]
 	bets := c.blockchain.GetBetsForMatch(matchID)
+	if len(bets) == 0 {
+        w.WriteHeader(http.StatusNotFound)
+        json.NewEncoder(w).Encode(map[string]string{"error": "No bets found for player with matchID : " + matchID})
+        return
+    }
 	w.WriteHeader(http.StatusOK)
 	data, _ := json.Marshal(bets)
 	w.Write(data)
 	return
 }
 
-//GetBetsForPlayer GET /player/{playerName}
+// GetBetsForPlayer GET /player/{playerName}
 func (c *Controller) GetBetsForPlayer(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	playerName := strings.ToLower(vars["playerName"])
+    vars := mux.Vars(r)
+    playerName := vars["playerName"]
+    bets := c.blockchain.GetBetsForPlayer(playerName)
 
-	bets := c.blockchain.GetBetsForPlayer(playerName)
-	w.WriteHeader(http.StatusOK)
-	data, _ := json.Marshal(bets)
-	w.Write(data)
-	return
+    if len(bets) == 0 {
+        w.WriteHeader(http.StatusNotFound)
+        json.NewEncoder(w).Encode(map[string]string{"error": "No bets found for player with name : " + playerName})
+        return
+    }
+
+    w.WriteHeader(http.StatusOK)
+    data, _ := json.Marshal(bets)
+    w.Write(data)
 }
